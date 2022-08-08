@@ -128,10 +128,11 @@ def get_view_data():
 
     )
 
-#Reuben
+
+# Reuben
 # TODO: Create a function (get_updates)
 @app.route("/updates_data/")  # create an api
-def get_updates(): # to activate api portal, click on the localhost and paste the app.route directory
+def get_updates():  # to activate api portal, click on the localhost and paste the app.route directory
     # TODO: Create an engine
     engine = db.engine
     with engine.connect() as conn:
@@ -153,9 +154,8 @@ def get_updates(): # to activate api portal, click on the localhost and paste th
             converted_result = dict(data)
             empty_bracket_list.append(converted_result)
 
-
         # TODO: Return Converted List/Dictionary
-        return dict(ELSA_Data=empty_bracket_list) #preparation
+        return dict(ELSA_Data=empty_bracket_list)  # preparation
 
 
 # Winnie Code
