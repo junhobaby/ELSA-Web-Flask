@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- DataTable CSS  -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+
+    <!-- DataTable JS   -->
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script>
+
+    // jQuery library ->> necessary for `$` to work
+    $(document).ready(function () {
+
+        var x = {{ datatable_data | safe }}
+
+        // DataTable library ->> necessary for `.DataTable()` function to work
+        var table = $('#example').DataTable({
+            data:x
+        });
+    });
+</script>
+
+
+    <title>View</title>
+</head>
+<body>
+
+    <table id="example" class="display" style="width:100%">
+        <!-- Columns -->
+        <thead>
+            <tr>
+                <th>Active</th>
+                <th>Address</th>
+                <th>Full Name</th>
+        </tr>
+        </thead>
+    </table>
+
+</body>
+</html>
