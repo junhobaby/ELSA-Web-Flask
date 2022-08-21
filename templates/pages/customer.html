@@ -1,17 +1,47 @@
 {% extends "layout/base.html" %}
 
 <!-- Title Block-->
-{% block title %}Customer{% endblock %}
+{% block title %}Owner{% endblock %}
 
 
 <!-- Content Block -->
 {% block content %}
 
-<h3>Customer Details</h3>
+<h3>Owner Details</h3>
 <form>
     <div class="mb-3">
-        <label for="customerName" class="form-label">Customer Name</label>
-        <input type="text" class="form-control" id="customerName" value="{{ customer['name'] }}">
+        <label for="customerName" class="form-label">Owner Name</label>
+        <input type="text" class="form-control" id="customerName" value="{{ owner_name }}">
     </div>
+
+    <div class="mb-3">
+        <label for="customerAddress" class="form-label">Owner Id</label>
+        <input type="text" class="form-control" id="customerAddress" value="{{ owner_id }}">
+    </div>
+
+    <div class="mb-3">
+        <label for="customerPhone" class="form-label">Owner Phone</label>
+        <input type="text" class="form-control" id="customerPhone" value="{{ owner_phone }}">
+    </div>
+
+    <div class="mb-3">
+        <label for="customerEmail" class="form-label">Owner Email</label>
+        <input type="text" class="form-control" id="customerEmail" value="{{ owner_email }}">
+    </div>
+
+    {% for school in school_details %}
+    <div class="mb-3">
+        <label class="form-label">School Name</label>
+        <input type="text" class="form-control" value="{{ school['school_name'] }}">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">School Address</label>
+        <input type="text" class="form-control" value="{{ school['address'] }}">
+    </div>
+    {% endfor %}
+
+    <button class="btn btn-primary btn-sm">Update</button>
+    <a class="btn btn-secondary btn-sm" href="/customers/">Back</a>
 </form>
 {% endblock %}
