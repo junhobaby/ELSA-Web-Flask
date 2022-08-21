@@ -1,0 +1,39 @@
+{% extends "layout/base.html" %}
+
+<!-- Title Block-->
+{% block title %}Customers{% endblock %}
+
+<!-- Content Block -->
+{% block content %}
+    <h3>Customers List</h3>
+    <table class="table table-striped" id="customers">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Email</th>
+                <th scope="col">School ID</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in customers %}
+                <tr>
+                    <th scope="row">{{ customer['id'] }}</th>
+                    <td>{{ customer['name'] }}</td>
+                    <td>{{ customer['address'] }}</td>
+                    <td>{{ customer['phone'] }}</td>
+                    <td>{{ customer['email'] }}</td>
+                    <td>{{ customer['school_id'] }}</td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/customers.js') }}"></script>
+{% endblock %}

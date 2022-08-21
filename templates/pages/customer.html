@@ -1,0 +1,17 @@
+{% extends "layout/base.html" %}
+
+<!-- Title Block-->
+{% block title %}Customer{% endblock %}
+
+
+<!-- Content Block -->
+{% block content %}
+
+<h3>Customer Details</h3>
+<form>
+    <div class="mb-3">
+        <label for="customerName" class="form-label">Customer Name</label>
+        <input type="text" class="form-control" id="customerName" value="{{ customer['name'] }}">
+    </div>
+</form>
+{% endblock %}
