@@ -8,7 +8,7 @@
 {% block content %}
 
 <h3>Owner Details</h3>
-<form>
+<form id="updateSchool">
 
     <div class="mb-3">
         <label for="ownerId" class="form-label">Owner Id</label>
@@ -31,7 +31,7 @@
     </div>
 
     {% for school in school_details %}
-    <div class="mb-3">
+    <div class="mb-3 mt-4">
         <label for="schoolName{{ school['school_id'] }}" class="form-label">School Name</label>
         <input type="text" class="form-control" id="schoolName{{ school['school_id'] }}" value="{{ school['school_name'] }}" readonly>
     </div>
@@ -43,12 +43,15 @@
     </div>
     <hr/>
 
-    <div class="container" id="searchResult{{ school['school_id'] }}">
+    <div class="container">
+        <ul class="list-group" id="searchResult{{ school['school_id'] }}">
+        </ul>
     </div>
 
     {% endfor %}
 
-    <button class="btn btn-primary btn-sm" id="submit">Update</button>
+    <br>
+    <button class="btn btn-primary btn-sm " id="submit">Update</button>
     <a class="btn btn-secondary btn-sm" href="/owners/">Back</a>
 </form>
 {% endblock %}

@@ -67,15 +67,25 @@ def geocode_school():
 
     # get data from JS
     data = request.json
-    address_query = data['query']
+    try:
+        address_query = data['query']
 
-    # send query to PositionStack
-    response = ps_api.geocode(address_query)
-    response_dict = response.json()
-    for result in response_dict['data']:
+        # send query to PositionStack
+        response = ps_api.geocode(address_query)
+        response_dict = response.json()
+        payload = []
 
-        # insert data to db
-        raw_address_pk = pg_db.insert_raw_json('raw_address', json.dumps(result))
-        print(raw_address_pk)
+        for result in response_dict['data']:
 
-    return data
+            # insert data to db
+            raw_address_pk = pg_db.insert_raw_json('raw_address', json.dumps(result))
+            print(raw_address_pk)
+
+            # append new data to be sent to front end
+            payload.append(dict(address_pk=raw_address_pk, data=result))
+        return dict(data=payload)
+
+    except KeyError as e:
+        return dict(data=[])
+
+
