@@ -1,9 +1,10 @@
+import json
 from flask import Flask, render_template, abort
 from models import db
 from jinja2 import TemplateNotFound
-from os import environ
+from os import environ, path
 from dotenv import load_dotenv
-from blueprints.customers import customers_bp
+from blueprints.owners import owners_bp
 
 load_dotenv()  # take environment variables from .env.
 
@@ -25,7 +26,7 @@ app.debug = True
 db.init_app(app)
 
 # BLUEPRINT REGISTRATION
-app.register_blueprint(customers_bp)
+app.register_blueprint(owners_bp)
 
 
 @app.route('/', defaults={'page': 'home'})
@@ -35,6 +36,14 @@ def show(page):
         return render_template(f'pages/{page}.html')
     except TemplateNotFound:
         abort(404)
+
+
+@app.route('/forward')
+def test():
+    file_path = path.abspath(path.dirname(__file__)) + '/test_data.json'
+    with open(file_path) as file:
+        test_data = json.load(file)
+    return test_data
 
 
 if __name__ == '__main__':

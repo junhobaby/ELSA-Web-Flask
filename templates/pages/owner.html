@@ -1,0 +1,58 @@
+{% extends "layout/base.html" %}
+
+<!-- Title Block-->
+{% block title %}Owner{% endblock %}
+
+
+<!-- Content Block -->
+{% block content %}
+
+<h3>Owner Details</h3>
+<form>
+
+    <div class="mb-3">
+        <label for="ownerId" class="form-label">Owner Id</label>
+        <input type="text" class="form-control" id="ownerId" value="{{ owner_id }}" readonly>
+    </div>
+
+    <div class="mb-3">
+        <label for="ownerName" class="form-label">Owner Name</label>
+        <input type="text" class="form-control" id="ownerName" value="{{ owner_name }}" readonly>
+    </div>
+
+    <div class="mb-3">
+        <label for="ownerPhone" class="form-label">Owner Phone</label>
+        <input type="text" class="form-control" id="ownerPhone" value="{{ owner_phone }}" readonly>
+    </div>
+
+    <div class="mb-3">
+        <label for="ownerEmail" class="form-label">Owner Email</label>
+        <input type="text" class="form-control" id="ownerEmail" value="{{ owner_email }}" readonly>
+    </div>
+
+    {% for school in school_details %}
+    <div class="mb-3">
+        <label for="schoolName{{ school['school_id'] }}" class="form-label">School Name</label>
+        <input type="text" class="form-control" id="schoolName{{ school['school_id'] }}" value="{{ school['school_name'] }}" readonly>
+    </div>
+
+    <label for="schoolAddress{{ school['school_id'] }}" class="form-label">School Address</label>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" id="schoolAddress{{ school['school_id'] }}" value="{{ school['address'] }}" aria-describedby="button-addon2">
+      <button class="btn btn-outline-dark search" type="button" data-id="{{ school['school_id'] }}">Search</button>
+    </div>
+    <hr/>
+
+    <div class="container" id="searchResult{{ school['school_id'] }}">
+    </div>
+
+    {% endfor %}
+
+    <button class="btn btn-primary btn-sm" id="submit">Update</button>
+    <a class="btn btn-secondary btn-sm" href="/owners/">Back</a>
+</form>
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/owner.js') }}"></script>
+{% endblock %}

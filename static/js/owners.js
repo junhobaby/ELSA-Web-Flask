@@ -11,7 +11,7 @@ $(document).ready(function () {
 
     $('#customers tbody').on('click', 'button', function () {
         var data = table.row($(this).parents('tr')).data();
-        window.location.href = `/customers/${data[0]}`;
+        window.location.href = `/owners/${data[0]}`;
         return false;
     });
 });
