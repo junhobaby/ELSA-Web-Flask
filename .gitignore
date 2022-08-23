@@ -2,3 +2,8 @@
 venv/*
 .env
 .DS_Store
+__pycache__/
+api/__pycache__/
+blueprints/__pycache__/
+services/__pycache__/
+:

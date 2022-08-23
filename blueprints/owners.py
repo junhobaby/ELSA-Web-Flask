@@ -1,5 +1,6 @@
 import json
-
+import googlemaps
+from os import environ
 from flask import Blueprint, render_template
 from flask.globals import request
 from models import db
@@ -62,7 +63,7 @@ def show_owner(owner_id):
 def geocode_school():
 
     # initiate classes
-    ps_api = PositionStack()
+    gmaps = googlemaps.Client(key=environ.get('GOOGLE_MAPS_API_KEY'))
     pg_db = Database(db.engine)
 
     # get data from JS
@@ -70,22 +71,31 @@ def geocode_school():
     try:
         address_query = data['query']
 
-        # send query to PositionStack
-        response = ps_api.geocode(address_query)
-        response_dict = response.json()
-        payload = []
-
-        for result in response_dict['data']:
-
-            # insert data to db
-            raw_address_pk = pg_db.insert_raw_json('raw_address', json.dumps(result))
-            print(raw_address_pk)
-
-            # append new data to be sent to front end
-            payload.append(dict(address_pk=raw_address_pk, data=result))
-        return dict(data=payload)
+        # geocode using Google Maps
+        result = gmaps.geocode(address_query)[0]
+        print(result)
+        raw_address_pk = pg_db.insert_raw_json('raw_address', json.dumps(result))
+        payload = dict(address_pk=raw_address_pk, data=result)
+        return payload
 
     except KeyError as e:
         return dict(data=[])
 
 
+@owners_bp.route('/<owner_id>/schools/', methods=['POST'])
+def standardise_school(owner_id):
+    data = request.json
+    # payload: {"owner_id": 1, schools: [{"school_id": 1, "raw_address_id": 1}, {"school_id": 2, "raw_address_id": 2}]}
+    owner_id = data['owner_id']
+    schools = data['schools']
+
+    with db.engine.connect() as conn:
+        for school in schools:
+            query = f"""
+                UPDATE src_schools
+                SET raw_address_id = {school['raw_address_id']}
+                WHERE owner_id = {owner_id} and id = {school['school_id']}
+            """
+            conn.execute(query)
+
+    return dict(message='success')

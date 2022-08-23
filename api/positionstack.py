@@ -6,8 +6,8 @@ class PositionStack:
 
     def __init__(self):
         # prod
-        # self.base_url = 'http://api.positionstack.com/v1'
-        self.base_url = 'http://localhost:5000'
+        self.base_url = 'http://api.positionstack.com/v1'
+        # self.base_url = 'http://localhost:5000'
         self.api_key = environ.get('POSITIONSTACK_API_KEY')
 
     def geocode(self, address):

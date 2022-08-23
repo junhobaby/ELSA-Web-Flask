@@ -77,6 +77,94 @@
           "offset_sec": -18000,
           "offset_string": "-05:00"
         }
-      }
+      },
+
+      {
+            "latitude": -35.445896,
+            "longitude": 149.074392,
+            "type": "locality",
+            "name": "Bonython",
+            "number": null,
+            "postal_code": null,
+            "street": null,
+            "confidence": 0.6,
+            "region": "Australian Capital Territory",
+            "region_code": "ACT",
+            "county": null,
+            "locality": "Bonython",
+            "administrative_area": null,
+            "neighbourhood": null,
+            "country": "Australia",
+            "country_code": "AUS",
+            "continent": "Oceania",
+            "label": "Bonython, ACT, Australia",
+            "bbox_module": [
+                149.064264096,
+                -35.4465294965,
+                149.091285792,
+                -35.4238195625
+            ],
+            "country_module": {
+                "latitude": -25.585241317749023,
+                "longitude": 134.50411987304688,
+                "common_name": "Australia",
+                "official_name": "Commonwealth of Australia",
+                "capital": "Canberra",
+                "flag": "🇦🇺",
+                "area": 7692024,
+                "landlocked": false,
+                "independent": true,
+                "global": {
+                    "alpha2": "AU",
+                    "alpha3": "AUS",
+                    "numeric_code": "036",
+                    "region": "Oceania",
+                    "subregion": "Australia and New Zealand",
+                    "region_code": "009",
+                    "subregion_code": "053",
+                    "world_region": "APAC",
+                    "continent_name": "Oceania",
+                    "continent_code": "OC"
+                },
+                "dial": {
+                    "calling_code": "61",
+                    "national_prefix": "0",
+                    "international_prefix": "0011"
+                },
+                "currencies": [
+                    {
+                        "symbol": "$",
+                        "code": "AUD",
+                        "name": "Australian Dollar",
+                        "numeric": 36,
+                        "minor_unit": 2
+                    }
+                ],
+                "languages": {
+                    "eng": "English"
+                }
+            },
+            "sun_module": {
+                "rise": {
+                    "time": 1661200526,
+                    "astronomical": 1661195420,
+                    "civil": 1661198975,
+                    "nautical": 1661197191
+                },
+                "set": {
+                    "time": 1661240248,
+                    "astronomical": 1661245354,
+                    "civil": 1661241798,
+                    "nautical": 1661243582
+                },
+                "transit": 1661220387
+            },
+            "timezone_module": {
+                "name": "Australia/Sydney",
+                "offset_sec": 36000,
+                "offset_string": "+10:00"
+            }
+        }
+
     ]
 }
