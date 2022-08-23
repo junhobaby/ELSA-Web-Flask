@@ -16,7 +16,17 @@ owners_bp = Blueprint('owners',
 @owners_bp.route('/')
 def show_owners():
     # list all customers from `src_owners` table
-    query = "SELECT * FROM src_owners"
+    #SrcOwners, SRCSchools join them by owner Id, write sql table
+    #Join them by owner ID, records, raw_address_id is null,
+    query = """
+    SELECT
+        o.*
+    FROM src_owners o
+    INNER JOIN src_schools s 
+        ON s.owner_id = o.id
+    WHERE s.raw_address_id is NULL
+    """
+
     result_set = db.engine.execute(query).fetchall()
     return render_template('pages/owners.html',
                            customers=[dict(i) for i in result_set])

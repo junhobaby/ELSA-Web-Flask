@@ -38,12 +38,7 @@ def show(page):
         abort(404)
 
 
-@app.route('/forward')
-def test():
-    file_path = path.abspath(path.dirname(__file__)) + '/test_data.json'
-    with open(file_path) as file:
-        test_data = json.load(file)
-    return test_data
+
 
 
 if __name__ == '__main__':

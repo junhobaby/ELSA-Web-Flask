@@ -63,6 +63,7 @@ $(document).ready(function () {
             data: JSON.stringify(payload),
             success: function () {
                 alert('Update complete!');
+                window.location.href="/owners/";
             },
             error: function (error) {
                 console.log(error);
